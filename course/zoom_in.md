@@ -46,8 +46,8 @@ Berikut adalah contoh bagaimana gambar resolusi rendah dan tinggi bereaksi saat 
 import cv2
 
 # Membaca gambar resolusi tinggi dan rendah
-high_res = cv2.imread('high_res_image.jpg')  # Misal 4000x3000 px
-low_res = cv2.imread('low_res_image.jpg')    # Misal 640x480 px
+high_res = cv2.imread('./high-res-3840-2160.jpg')  # Misal 4000x3000 px
+low_res = cv2.imread('/.low-res-288-336.jpg')    # Misal 640x480 px
 
 # Memperbesar gambar (zoom in) menggunakan resize
 scale_factor = 4
