@@ -1,8 +1,8 @@
 import cv2
 
 # Membaca gambar resolusi tinggi dan rendah
-high_res = cv2.imread('high-res-3840-2160.jpg') 
-low_res = cv2.imread('low-res-859-483.jpg')   
+high_res = cv2.imread('low-res-257-144.jpg')   
+low_res = cv2.imread('high-res-1152-648.jpg') 
 
 # Memperbesar gambar (zoom in) menggunakan resize
 scale_factor = 4
