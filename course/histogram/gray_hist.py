@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 
 # Baca gambar grayscale
 image = cv2.imread('sample.png', cv2.IMREAD_GRAYSCALE)
+print(image.shape)
 cv2.imshow('gray',image)
 
 # Hitung histogram
