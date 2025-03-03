@@ -1,5 +1,8 @@
 
 import cv2
+# mengubah kontras pada setiap pixel. 
+# kontras berarti pixel yang gelap bertambah gelap, sedang pixel terang menjadi lebih terang
+
 # Histogram Equalization
 image = cv2.imread('sample.png', cv2.IMREAD_GRAYSCALE)
 
