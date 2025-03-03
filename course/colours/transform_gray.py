@@ -15,6 +15,10 @@ jum_kolom = len(citra[0])
 
 # Menyiapkan citra baru dengan nilai 0
 citra_gray = np.zeros((jum_baris, jum_kolom))
+# >>> np.zeros((3,3)) untuk 3x3
+# array([[0., 0., 0.],
+#        [0., 0., 0.],
+#        [0., 0., 0.]])
 
 # Menghitung nilai pixel grayscale
 for i in range(jum_baris):

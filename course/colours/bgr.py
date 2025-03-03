@@ -10,7 +10,7 @@ blue_layer = citra[:,:,0]
 print(blue_layer)
 # array 2 dimensi (631, 617)  untuk layer biru saja
 print(blue_layer.shape)
-# blue layer saja = 8 bit
+# blue layer saja = 8 bit, sehingga hanya menampilkan gray saja
 cv2.imshow("blue layer", blue_layer)
 
 # green 
