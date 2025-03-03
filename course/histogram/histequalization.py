@@ -1,6 +1,8 @@
 
 import cv2
 # Histogram Equalization
+image = cv2.imread('sample.png', cv2.IMREAD_GRAYSCALE)
+
 equalized_image = cv2.equalizeHist(image)
 
 # Tampilkan hasil
