@@ -7,20 +7,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Upload an Image</h1>
-    <form action="/" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" id="imageInput" accept="image/*" required>
-        <img id="preview" src="#" alt="Image Preview" style="display:none;">
-        <button type="submit">Process</button>
-    </form>
-
-    {% if original and processed %}
-        <h2>Original Image</h2>
-        <img src="{{ url_for('static', filename='uploads/' + original) }}" alt="Original Image">
-        <h2>Grayscale Image</h2>
-        <img src="{{ url_for('static', filename='processed/' + processed) }}" alt="Processed Image">
-    {% endif %}
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <h1>Halaman utama</h1>
+    <ol>
+        <li> <a href="/proses_gambar"> Halaman Proses Gambar </a></li>
+    </ol>
+    <img src="../static/uploads/yamal.jpg">
 </body>
 </html>

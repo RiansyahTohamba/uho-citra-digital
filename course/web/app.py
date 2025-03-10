@@ -10,7 +10,12 @@ app.config['PROCESSED_FOLDER'] = 'static/processed/'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.makedirs(app.config['PROCESSED_FOLDER'], exist_ok=True)
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('index.html')
+
+
+@app.route('/proses_gambar', methods=['GET', 'POST'])
 def upload_image():
     if request.method == 'POST':
         if 'image' not in request.files:
@@ -28,9 +33,9 @@ def upload_image():
             processed_path = os.path.join(app.config['PROCESSED_FOLDER'], file.filename)
             cv2.imwrite(processed_path, gray_img)
             
-            return render_template('index.html', original=file.filename, processed=file.filename)
+            return render_template('bebasji.html', original=file.filename, processed=file.filename)
     
-    return render_template('index.html', original=None, processed=None)
+    return render_template('bebasji.html', original=None, processed=None)
 
 if __name__ == '__main__':
     app.run(debug=True)
