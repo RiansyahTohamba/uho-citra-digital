@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, send_from_
 import os
 import cv2
 import numpy as np
+from konfigurasi import Konfigurasi
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads/'
@@ -14,6 +15,17 @@ os.makedirs(app.config['PROCESSED_FOLDER'], exist_ok=True)
 def index():
     return render_template('index.html')
 
+@app.route('/config_spk',methods=['GET','POST'])
+def config_spk():
+    konfig = Konfigurasi()
+    data = konfig.read_yaml()
+    
+    if request.method == "POST":
+        key = request.form["key"]
+        value = request.form["value"]
+        konfig.update_yaml(key, value)
+        return redirect(url_for("config_spk"))
+    return render_template("konfigurasi.html", data=data)
 
 @app.route('/proses_gambar', methods=['GET', 'POST'])
 def upload_image():

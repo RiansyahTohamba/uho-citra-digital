@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit YAML Key</title>
+</head>
+<body>
+    <h2>Edit YAML Key</h2>
+    <form method="POST" action="/config_spk">
+        <label for="key">Key:</label>
+        <input type="text" name="key" required placeholder="Misal: kuota">
+        
+        <label for="value">New Value:</label>
+        <input type="text" name="value" required>
+        
+        <button type="submit">Update</button>
+    </form>
+
+    <h3>Current YAML Data:</h3>
+    <pre>{{ data | tojson(indent=2) }}</pre>
+</body>
+</html>
