@@ -1,5 +1,7 @@
+
 document.getElementById("imageInput").addEventListener("change", function(event) {
     const preview = document.getElementById("preview");
+    // document.getElementsByClassName()
     const file = event.target.files[0];
 
     if (file) {

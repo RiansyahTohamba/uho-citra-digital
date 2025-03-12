@@ -9,11 +9,24 @@
 <body>
     <h1>Upload an Image</h1>
     <a href="/">kembali ke halaman utama</a>
-    <form action="/proses_gambar" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" id="imageInput" accept="image/*" required>
-        <img id="preview" src="#" alt="Image Preview" style="display:none;">
-        <button type="submit">Process</button>
-    </form>
+    
+    <div id="ini_id" class="ini_kelas">
+        <p>huruf</p>
+        <form action="/proses_gambar" method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" id="imageInput" accept="image/*" required>
+            <img id="preview" src="#" alt="Image Preview" style="display:none;">
+            <button type="submit">Process</button>
+        </form>
+    </div>
+
+    <div class="ini_kelas">
+        <p> huruf kelas 3</p>
+    </div>
+
+    <div class="ini_kelas">
+        <p> huruf kelas 2</p>
+
+    </div>
     
     {% if original and processed %}
         <h2>Original Image</h2>
