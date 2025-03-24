@@ -2,18 +2,24 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Transformasi Fourier digunakan untuk menganalisis komponen frekuensi dalam citra, yang berguna dalam filtering domain frekuensi.
-image = cv2.imread('sample.png')
+# Baca gambar dalam mode grayscale
+image = cv2.imread('sample.png', cv2.IMREAD_GRAYSCALE)
 
-# **Contoh Kode (Python - NumPy & OpenCV):**  
+# Transformasi Fourier
 dft = np.fft.fft2(image)
 dft_shift = np.fft.fftshift(dft)
 
 # Magnitude Spectrum
-magnitude_spectrum = 20 * np.log(np.abs(dft_shift))
+magnitude_spectrum = 20 * np.log(np.abs(dft_shift) + 1)  # +1 untuk menghindari log(0)
 
-# Tampilkan hasil
-plt.figure()
-plt.title("Magnitude Spectrum")
-plt.imshow(magnitude_spectrum, cmap='gray')
-plt.show()
+# Normalisasi ke rentang 0-255 agar bisa ditampilkan dengan cv2.imshow
+magnitude_spectrum = cv2.normalize(magnitude_spectrum, None, 0, 255, cv2.NORM_MINMAX)
+magnitude_spectrum = np.uint8(magnitude_spectrum)
+
+# Tampilkan hasil menggunakan OpenCV
+cv2.imshow("Gambar Asli", image)
+cv2.imshow("Magnitude Spectrum", magnitude_spectrum)
+
+# Tunggu input dari user lalu tutup semua jendela
+cv2.waitKey(0)
+cv2.destroyAllWindows()
