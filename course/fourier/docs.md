@@ -1,3 +1,5 @@
+# 28 APRIL & 5 MEI
+
 Sinyal dan citra sebenarnya memiliki hubungan yang erat dalam domain frekuensi karena **citra adalah sinyal dalam bentuk dua dimensi**. Untuk memahami mengapa ada sinyal frekuensi pada citra, kita perlu melihat keterkaitan antara sinyal 1D dan citra 2D:
 
 ### 1. **Sinyal sebagai Fungsi dalam Domain Waktu dan Ruang**

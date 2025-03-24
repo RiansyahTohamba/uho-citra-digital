@@ -5,7 +5,7 @@ import cv2 as cv
 
 def histogramEqual():
     root = os.getcwd()
-    imgPath = os.path.join(root, 'demoImages\\badQuality.jpg')
+    imgPath = os.path.join(root, 'sample-histogram.png')
     img = cv.imread(imgPath, cv.IMREAD_GRAYSCALE)
     hist = cv.calcHist([img], [0], None, [256], [0,256])
     cdf = hist.cumsum()
@@ -50,3 +50,5 @@ def histogramEqual():
     plt.ylabel('# of pixels')
 
     plt.show()
+    
+histogramEqual()
