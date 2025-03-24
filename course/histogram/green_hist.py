@@ -4,19 +4,20 @@ import matplotlib.pyplot as plt
 
 # Baca gambar grayscale
 image = cv2.imread('sample.png')
+only_green = image[:,:,1]
+
 print(image.shape)
+
 cv2.imshow('all',image)
-cv2.imshow('blue',image[:,:,0])
-
-only_blue = image[:,:,0]
-
+cv2.imshow('green',only_green)
+# cv2.normalize()
 
 # # Hitung histogram
-histogram = cv2.calcHist([image], [0], None, [256], [0, 256])
+histogram = cv2.calcHist([only_green], [0], None, [256], [0, 256])
 
 # # Tampilkan histogram
 plt.figure()
-plt.title("Histogram Blue")
+plt.title("Histogram green")
 plt.xlabel("Intensitas Piksel")
 plt.ylabel("Frekuensi")
 plt.plot(histogram)

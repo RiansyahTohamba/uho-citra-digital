@@ -1,0 +1,28 @@
+idx = intensitas pixel (cth: 0-15)
+-- init
+Hist[0] = 0
+Hist[1] = 0
+Hist[2] = 0
+...
+Hist[15] = 0
+------
+i=0
+j=0
+------
+Image[0][0] = 3
+Image[0][1] = 7
+Image[0][2] = 7
+Image[0][3] = 8
+...
+Image[1][0] = 2
+Image[1][1] = 0
+Image[1][2] = 0
+Image[1][3] = 0
+...
+Hist[Image[i][j]]=Hist[Image[i][j]]+1;
+..
+Hist[Image[0][0]]=Hist[Image[0][0]]+1;
+Hist[3]=Hist[3]+1;
+
+.. dimudahkan dengan ini
+SELECT COUNT(pixel) FROM tb_citra WHERE intensitas=0
