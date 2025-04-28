@@ -8,6 +8,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Lakukan transformasi wavelet
+image_path = 'sample.png'
+image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+
 coeffs2 = pywt.dwt2(image, 'haar')
 cA, (cH, cV, cD) = coeffs2  # Approximation, Horizontal, Vertical, Diagonal
 
