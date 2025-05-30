@@ -23,10 +23,22 @@ Enhancement Spatial filtering
 
 # Minggu ke 10 (19 mei)
 Enhancement Spatial filtering (2). 
+lowpass filtering
+highpass filtering
+...
+(presentasi)
+konversi kode dari pustaka ke kode numpy (scracth)
+pustaka (GaussianBlur, Sobel, etc...)
+yang presentasi=100
 
 # Minggu 11 (26 mei):
 Enhancement Spatial filtering (3)
-Menerapkan metode peningkatan kualitas citra dengan korelasi, konvolusi, smoothing, dan sharpening filters.
+(presentasi)
+konversi kode dari pustaka ke kode numpy (scracth)
+pustaka (GaussianBlur, Sobel, etc...)
+yang presentasi=100
+yang tidak presentasi langsung + video =
+
 
 # Minggu 12(2 juni): 
 Enhancement pada domain frekuensi: 
