@@ -5,18 +5,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn.preprocessing import LabelEncoder
-import joblib
+from feature_utils import extract_features
 
-# --- Fungsi Ekstraksi Fitur ---
-def extract_features(image_path):
-    img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-    img = cv2.resize(img, (128, 128))  # Normalisasi ukuran
-    filtered = cv2.GaussianBlur(img, (5, 5), 0)  # Spasial filter
-    
-    # Fitur sederhana: histogram intensitas
-    hist = cv2.calcHist([filtered], [0], None, [64], [0, 256]).flatten()
-    hist = hist / np.sum(hist)  # Normalisasi
-    return hist
+import joblib
 
 # --- Load dataset ---
 features = []
