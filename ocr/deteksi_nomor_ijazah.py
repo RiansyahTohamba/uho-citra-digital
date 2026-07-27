@@ -142,13 +142,14 @@ def main():
     print("=" * 60)
 
     if args.debug:
+        pathdirhasil = "hasil"
         base = os.path.splitext(os.path.basename(args.berkas))[0]
-        cv2.imwrite(f"debug_{base}_roi.png", roi)
+        cv2.imwrite(f"{pathdirhasil}/debug_{base}_roi.png", roi)
         anot = img.copy()
         h, w = img.shape[:2]
         x0,y0,x1,y1 = args.roi
         cv2.rectangle(anot,(int(x0*w),int(y0*h)),(int(x1*w),int(y1*h)),(0,180,255),4)
-        cv2.imwrite(f"debug_{base}_anotasi.png", anot)
+        cv2.imwrite(f"{pathdirhasil}/debug_{base}_anotasi.png", anot)
         print(f"[debug] disimpan: debug_{base}_roi.png, debug_{base}_anotasi.png")
 
     sys.exit(0 if ketemu else 1)
