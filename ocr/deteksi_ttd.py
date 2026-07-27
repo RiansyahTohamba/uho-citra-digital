@@ -145,16 +145,17 @@ def main():
 
     if args.debug:
         base = os.path.splitext(os.path.basename(args.berkas))[0]
-        cv2.imwrite(f"debug_{base}_ttd_roi.png", roi)
-        cv2.imwrite(f"debug_{base}_ttd_biner.png", dbg["bw"])
-        cv2.imwrite(f"debug_{base}_ttd_tanpa_garis.png", dbg["tanpa_garis"])
+        pathdirttd_hasil = "hasil_ttd/"
+        cv2.imwrite(f"{pathdirttd_hasil}_debug_{base}_ttd_roi.png", roi)
+        cv2.imwrite(f"{pathdirttd_hasil}_debug_{base}_ttd_biner.png", dbg["bw"])
+        cv2.imwrite(f"{pathdirttd_hasil}_debug_{base}_ttd_tanpa_garis.png", dbg["tanpa_garis"])
         anot = img.copy(); h,w = img.shape[:2]; x0,y0,x1,y1 = args.roi
         cv2.rectangle(anot,(int(x0*w),int(y0*h)),(int(x1*w),int(y1*h)),(0,180,255),4)
         if b["bbox"]:
             xs,ys,xe,ye = b["bbox"]; ox,oy = int(x0*w),int(y0*h)
             col = (0,200,0) if verdict else (0,0,255)
             cv2.rectangle(anot,(ox+xs,oy+ys),(ox+xe,oy+ye),col,4)
-        cv2.imwrite(f"debug_{base}_ttd_anotasi.png", anot)
+        cv2.imwrite(f"{pathdirttd_hasil}_debug_{base}_ttd_anotasi.png", anot)
         print(f"[debug] disimpan: debug_{base}_ttd_roi.png, _biner.png, _tanpa_garis.png, _anotasi.png")
 
     sys.exit(0 if verdict else 1)
