@@ -1,2 +1,4 @@
 __pycache__
 .venv
+**/contoh_ijazah/**.jpg
+**/contoh_ijazah/**.jpeg
