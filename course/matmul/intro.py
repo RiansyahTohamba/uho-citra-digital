@@ -5,6 +5,7 @@ import numpy as np
 # Bentuknya (b, N, M) = b buah matriks berukuran N x M.
 # Pada citra digital, (N, M, b) juga array 3D, tetapi layer warna ada di sumbu terakhir.
 
+
 A = np.arange(1, 13).reshape(2, 2, 3)   # 2 matriks ukuran 2 x 3
 B = np.arange(1, 13).reshape(2, 3, 2)   # 2 matriks ukuran 3 x 2
 
@@ -16,8 +17,8 @@ print("shape B =", B.shape)
 # ---------------------------------------------------------------
 # 1. Perkalian matriks (batch) dengan numpy
 # ---------------------------------------------------------------
-# numpy memperlakukan dua sumbu terakhir sebagai matriks,
-# sumbu pertama dianggap "batch" dan dikerjakan satu per satu.
+# numpy memperlakukan dua sumbu(index) terakhir sebagai matriks,
+# sumbu(index) pertama dianggap "batch" dan dikerjakan satu per satu.
 # (2, 2, 3) @ (2, 3, 2) -> (2, 2, 2)
 C = A @ B                 # sama dengan np.matmul(A, B)
 print("\nA @ B =\n", C)
