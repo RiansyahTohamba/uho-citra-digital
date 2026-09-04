@@ -1,4 +1,13 @@
-Ya. **Menggunakan model yang sudah jadi untuk menghasilkan prediksi/output disebut *inference* (inferensi)**.
+# Apa yang harus dipahami sebelum melakukan benchmark?
+1. pengantar training model dan inference model?
+2. apa itu ceiling GPU pada benchmark
+
+
+
+
+# pengantar training model dan inference model?
+
+**Menggunakan model yang sudah jadi untuk menghasilkan prediksi/output disebut *inference* (inferensi)**.
 
 Perbedaan CPU vs CUDA/GPU akan sangat terasa terutama antara **training** dan **inference**.
 
@@ -240,3 +249,132 @@ Fix / continue
 ```
 
 Jadi dalam konteks riset **LLM/agentic software development**, istilah yang tepat biasanya adalah **LLM inference** atau **model inference**, sedangkan proses pembuatan/penyesuaian modelnya adalah **training/fine-tuning**.
+
+# istilah ceiling?
+
+Dalam benchmark AI, **ceiling** berarti **batas atas performa yang secara realistis dapat dicapai oleh suatu benchmark atau task**.
+
+Konsepnya penting karena skor tinggi belum tentu berarti model sudah benar-benar "sangat pintar"; bisa jadi benchmark-nya sendiri sudah mendekati batas maksimum.
+
+### Contoh sederhana
+
+Misalnya benchmark memiliki 1.000 soal.
+
+```text
+0% ─────────────────────────────── 100%
+                                      ↑
+                                    ceiling
+```
+
+Kalau model mendapat:
+
+* Model A: 60%
+* Model B: 80%
+* Model C: 95%
+
+sekilas C terlihat sangat unggul.
+
+Tetapi jika **95% adalah ceiling praktis benchmark tersebut**, maka:
+
+```text
+A ─────── 60%
+B ───────────── 80%
+C ─────────────────── 95%
+                         ↑
+                      ceiling
+```
+
+peningkatan berikutnya sulit dilakukan bukan hanya karena modelnya, tetapi karena **benchmark tersebut sudah tidak mampu membedakan model yang lebih baik**.
+
+### Ada dua makna ceiling yang sering muncul
+
+**1. Theoretical ceiling**
+
+Batas matematis maksimum.
+
+Untuk accuracy:
+
+> **100%**
+
+Misalnya benchmark 10.000 pertanyaan dengan jawaban benar/salah, secara teori ceiling-nya 100%.
+
+**2. Practical / empirical ceiling**
+
+Batas performa yang secara praktis dapat dicapai pada benchmark tersebut.
+
+Misalnya benchmark punya soal ambigu, noisy labels, atau beberapa soal yang memang sulit dinilai secara objektif. Bisa saja:
+
+```text
+Theoretical ceiling = 100%
+Practical ceiling   ≈ 90–95%
+```
+
+Bahkan manusia mungkin hanya memperoleh 92%.
+
+---
+
+### Dalam benchmark LLM, ada konsep yang lebih menarik: **human ceiling**
+
+Misalnya:
+
+```text
+Random baseline       25%
+Small LLM             55%
+Large LLM             82%
+Human performance     90%
+                         ↑
+                    human ceiling
+```
+
+Kalau model sudah mencapai 90%, benchmark tersebut mulai sulit digunakan untuk membedakan model yang lebih kuat.
+
+Karena itu peneliti sering membandingkan:
+
+> **model performance vs. human performance**
+
+---
+
+### Hubungannya dengan benchmark agent
+
+Ini menjadi semakin penting untuk **agentic AI**.
+
+Misalnya benchmark coding agent memberikan:
+
+```text
+Agent A     55%
+Agent B     65%
+Agent C     72%
+Human       85%
+```
+
+Maka masih ada ruang yang cukup besar.
+
+Tetapi kalau:
+
+```text
+Agent A     85%
+Agent B     90%
+Agent C     94%
+Human       95%
+```
+
+benchmark tersebut sudah mengalami **ceiling effect**.
+
+Perbedaan antara agent menjadi semakin sulit terlihat.
+
+---
+
+### Istilah yang perlu Anda bedakan
+
+| Istilah                 | Makna                                                                 |
+| ----------------------- | --------------------------------------------------------------------- |
+| **Ceiling**             | Batas atas performa                                                   |
+| **Ceiling effect**      | Benchmark terlalu mudah sehingga model-model berkumpul di skor tinggi |
+| **Floor**               | Batas bawah performa                                                  |
+| **Floor effect**        | Benchmark terlalu sulit sehingga model-model berkumpul di skor rendah |
+| **Human ceiling**       | Performa manusia sebagai batas pembanding                             |
+| **Theoretical ceiling** | Maksimum matematis, biasanya 100%                                     |
+| **Practical ceiling**   | Maksimum realistis yang bisa dicapai                                  |
+
+Untuk SLR tentang **LLM/agentic software engineering**, istilah **ceiling effect** cukup penting. Jika Anda menemukan paper mengatakan suatu benchmark *"is approaching saturation"* atau *"has a high ceiling"*, biasanya mereka sedang membicarakan **kemampuan benchmark untuk terus membedakan agent yang lebih baik**.
+
