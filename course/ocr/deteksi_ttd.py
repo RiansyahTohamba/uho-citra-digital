@@ -114,6 +114,12 @@ def main():
                     help="wilayah kanan-bawah dalam fraksi 0-1 (default: 0.5 0.58 1.0 1.0)")
     ap.add_argument("--page", type=int, default=0, help="halaman PDF (0=pertama)")
     ap.add_argument("--dpi", type=int, default=300, help="resolusi render PDF")
+    ap.add_argument("--auto-rotate", action="store_true",
+                    help="tegakkan halaman dulu (orientasi 90d + deskew) sebelum ROI dipotong")
+    ap.add_argument("--tanpa-osd", action="store_true",
+                    help="saat --auto-rotate: jangan pakai Tesseract OSD, andalkan proyeksi")
+    ap.add_argument("--crop-dokumen", action="store_true",
+                    help="saat --auto-rotate: potong tepi & koreksi perspektif (foto HP)")
     ap.add_argument("--debug", action="store_true", help="simpan ROI, mask, & anotasi")
     args = ap.parse_args()
 
@@ -121,6 +127,16 @@ def main():
         raise SystemExit(f"Berkas tidak ditemukan: {args.berkas}")
 
     img = load_image(args.berkas, page=args.page, dpi=args.dpi)
+
+    if args.auto_rotate:
+        from preprocess import siapkan_halaman
+        img, pra = siapkan_halaman(img, path=args.berkas,
+                                   pakai_osd=not args.tanpa_osd,
+                                   crop_dokumen=args.crop_dokumen)
+        print(f"[pra-proses] putar {pra['putar']}d ({pra['metode_orientasi']}, "
+              f"conf {pra['keyakinan']}), skew {pra['skew']}d, "
+              f"exif={pra['exif']}, crop={pra['crop_dokumen']}")
+
     roi = crop_roi(img, args.roi)
     verdict, score, b, dbg = analisis_ttd(roi)
 
