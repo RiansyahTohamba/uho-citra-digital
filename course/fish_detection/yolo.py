@@ -68,7 +68,7 @@ def load_yolo_model(size):
         st.error(f"Error loading model: {e}")
         return None
 
-def detect_fish(image, model, conf, iou):
+def detect_free_obj(image, model, conf, iou):
     """Run YOLOv8 inference on image"""
     try:
         # Run inference
@@ -192,7 +192,7 @@ with tab1:
         # Run detection
         if st.button("🔍 Detect Fish", key="detect_image"):
             with st.spinner("Running inference..."):
-                results = detect_fish(image_np, model, confidence_threshold, iou_threshold)
+                results = detect_free_obj(image_np, model, confidence_threshold, iou_threshold)
                 
                 if results is not None and len(results) > 0:
                     # Process results
